@@ -1,0 +1,165 @@
+[{
+    "id": 0,
+    "imageUrl": "https://thumb.tildacdn.com/tild6563-6434-4432-b164-376465306536/-/resize/260x/-/format/webp/3.jpg",
+    "title": "Картопля по селянськи",
+    "types": [
+      4,
+      5
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 35,
+    "category": "Вегетаріанські",
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "imageUrl": "https://thumb.tildacdn.com/tild6261-3861-4663-a532-336466393734/-/resize/260x/-/format/webp/10.jpg",
+    "title": "Оджахурі",
+    "types": [
+      3
+    ],
+    "sizes": [
+      26,
+      40
+    ],
+    "price": 25,
+    "category": "Мясні",
+    "rating": 6
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/6652fec1-04df-49d8-8744-232f1032c44b.jpg",
+    "title": "Курча барбекю Meat",
+    "types": [
+      0
+    ],
+    "sizes": [
+      26,
+      40
+    ],
+    "price": 95,
+    "category": "Мясні",
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://thumb.tildacdn.com/tild6635-6138-4065-a466-366337663464/-/resize/260x/-/format/webp/9.jpg",
+    "title": "Харчо",
+    "types": [
+      3
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 47,
+    "category": "Гриль",
+    "rating": 2
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://thumb.tildacdn.com/tild3861-3834-4863-b030-366430333938/-/resize/260x/-/format/webp/2.jpg",
+    "title": "Кубдарі",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 95,
+    "category": "Закриті",
+    "rating": 8
+  },
+  {
+    "id": 5,
+    "imageUrl": "https://thumb.tildacdn.com/tild6330-3133-4766-b038-353234313833/-/resize/260x/-/format/webp/4.jpg",
+    "title": "Люля Кебаб",
+    "types": [
+      4,
+      5
+    ],
+    "sizes": [
+      30,
+      40
+    ],
+    "price": 80,
+    "category": "Гриль",
+    "rating": 2
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://thumb.tildacdn.com/tild3739-6638-4432-a638-393963383363/-/resize/260x/-/format/webp/8.jpg",
+    "title": "Шоті",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 75,
+    "category": "Закриті",
+    "rating": 9
+  },
+  {
+    "id": 7,
+    "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/d48003cd-902c-420d-9f28-92d9dc5f73b4.jpg",
+    "title": "Маргарита Chili",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 50,
+    "category": "Гострі",
+    "rating": 10
+  },
+  {
+    "id": 8,
+    "imageUrl": "https://thumb.tildacdn.com/tild3833-3336-4134-a536-333764393739/-/resize/260x/-/format/webp/55.jpg",
+    "title": "Пхалі",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 95,
+    "category": "Гострі",
+    "rating": 10
+  },
+  {
+    "id": 9,
+    "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/30367198-f3bd-44ed-9314-6f717960da07.jpg",
+    "title": "Овощи и грибы 🌱 Close",
+    "types": [
+      0,
+      1
+    ],
+    "sizes": [
+      26,
+      30,
+      40
+    ],
+    "price": 85,
+    "category": "Закриті",
+    "rating": 7
+  }
+]
