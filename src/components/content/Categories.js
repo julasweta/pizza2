@@ -1,16 +1,20 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setCategories } from "../../redux/slices/filterSlice";
 import { setSearchValue } from "../../redux/slices/filterSlice";
+import { setPage } from "../../redux/slices/paginationSlice";
 
-function Categories({ arrCategories, page, setPage }) {
+function Categories({ arrCategories }) {
+  const {categories, sort} = useSelector((state) => state.filter);
 
-const categories = useSelector((state) => state.filter.categories);
-const dispatch = useDispatch();
+  const { page } = useSelector((state) => state.pagination);
+  const dispatch = useDispatch();
+
+
 
   const onActive = (item) => {
     dispatch(setSearchValue(""));
     dispatch(setCategories(item));
-    setPage((page = 1));
+    dispatch(setPage( 1));
   };
 
   return (

@@ -5,8 +5,11 @@ import { setSort } from "../../redux/slices/filterSlice";
 function Sort({ arrSort }) {
   const [open, setOpen] = useState(false);
 
-  const sort = useSelector((state) => state.filter.sort);
+  const {sort, categories} = useSelector((state) => state.filter);
   const dispatch = useDispatch();
+
+
+
 
   const onActive = (item) => {
     setOpen(!open);

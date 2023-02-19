@@ -1,28 +1,28 @@
 import "./scss/app.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 import Header from "./components/header/Header";
 import Content from "./components/content/Content";
 import Cart from "./components/cart/Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setPizas } from "./redux/slices/pizzasSlice";
 
 function App() {
-  const { sort, categories } = useSelector((state) => state.filter);
+  const { sort, categories, searchValue } = useSelector(
+    (state) => state.filter
+  );
+  const { page } = useSelector((state) => state.pagination);
+  const { pizzas } = useSelector((state) => state.pizzas);
 
+  const dispatch = useDispatch();
 
-  const [pizzas, setPizas] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  //const [page, setPage] = useState(1);
 
   const arrSort = ["популярність", "ціна", "алфавіт"];
-  const arrCategories = [
-    "Всі",
-    "Мясні ",
-    "Вегетаріанські",
-    "Гострі",
-    "Закриті",
-  ];
+  const arrCategories = ["Всі", "Мясні", "Вегетаріанські", "Гострі", "Закриті"];
   const pages = [];
   for (let i = 1; i < pizzas.length / 3 + 1; i++) {
     pages.push(i);
@@ -30,23 +30,15 @@ function App() {
 
   useEffect(() => {
     onFilterPizzas(categories, sort);
-  }, [categories, sort, page]);
+  }, [categories, sort, page, searchValue]);
 
+  /* витягуємо всі піци  */
   const onFilterPizzas = () => {
-    // виягуємо всі піци
-    // setTimeout(() => setIsLoading(true));
-    // setTimeout(() => setIsLoading(false), 2000);
 
-    fetch(
-      categories === "Всі"
-        ? `https://my-json-server.typicode.com/julasweta/repo/pizzas`
-        : `https://my-json-server.typicode.com/julasweta/repo/pizzas?category=${categories}`
-    )
-      .then((res) => {
-        return res.json();
-      })
+    axios
+      .get(`https://my-json-server.typicode.com/julasweta/repo/pizzas`)
       .then((arr) => {
-        arr.sort(function (a, b) {
+        arr.data.sort(function (a, b) {
           if (sort === "price") {
             if (a.price > b.price) {
               return 1;
@@ -78,11 +70,9 @@ function App() {
           }
         });
 
-        setPizas(arr);
+        dispatch(setPizas(arr.data));
       });
   };
-
-  
 
   return (
     <div>
@@ -95,11 +85,8 @@ function App() {
               <Content
                 onFilterPizzas={onFilterPizzas}
                 arrCategories={arrCategories}
-                setPage={setPage}
-                page={page}
                 pages={pages}
                 arrSort={arrSort}
-                pizzas={pizzas}
                 isLoading={isLoading}
               />
             }

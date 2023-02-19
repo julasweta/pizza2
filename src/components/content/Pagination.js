@@ -1,21 +1,23 @@
-import React from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { setPage } from "../../redux/slices/paginationSlice";
 
-function Pagination({ pages, setPage, page }) {
-
+function Pagination({ pages }) {
+  const { page } = useSelector((state) => state.pagination);
+  const dispatch = useDispatch();
 
   return (
     <div>
       <ul>
         <button
           className="btn__pagination fa"
-          onClick={() => page > 1 && setPage(page - 1)}
+          onClick={() => page > 1 && dispatch(setPage(page - 1))}
         >
           &#8592;
         </button>
         {pages.map((item, index) => (
           <button
             className="btn__pagination"
-            onClick={() => setPage(item)}
+            onClick={() => dispatch(setPage(item))}
             key={index}
           >
             {item}
@@ -23,7 +25,9 @@ function Pagination({ pages, setPage, page }) {
         ))}
         <button
           className="btn__pagination fa "
-          onClick={() => page < pages.length - 1 + 1 && setPage(page + 1)}
+          onClick={() =>
+            page < pages.length - 1 + 1 && dispatch(setPage(page + 1))
+          }
         >
           &#8594;
         </button>

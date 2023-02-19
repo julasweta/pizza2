@@ -1,9 +1,13 @@
 import React from 'react';
 import Search from './Search';
 import { Link } from "react-router-dom";
+import { setTotalPrice } from "../../redux/slices/pizzasSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 
 function Header() {
+  const { items, totalPrice, totalCount } = useSelector((state) => state.pizzas);
+
 
 
   return (
@@ -20,7 +24,7 @@ function Header() {
         ></Search>
         <div className="header__cart">
           <Link to="/cart" href="/cart.html" className="button button--cart">
-            <span>520 ₽</span>
+            <span>{totalPrice} грн</span>
             <div className="button__delimiter"></div>
             <svg
               width="18"
@@ -51,7 +55,7 @@ function Header() {
                 strokeLinejoin="round"
               />
             </svg>
-            <span>3</span>
+            <span>{totalCount}</span>
           </Link>
         </div>
       </div>
