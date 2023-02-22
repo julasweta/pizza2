@@ -65,7 +65,7 @@ function Pay() {
           <option value="52">52</option>
           <option value="23">23</option>
         </select>
-      <button type="submit" className="submit" >Submit</button>
+      <button type="submit" className="submit" >Відправити</button>
     </form>
     </div>
   );
