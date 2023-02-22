@@ -11,20 +11,18 @@ import { useEffect, useState } from "react";
 
 function Pizza({ id, title, price, sizes, types, imageUrl, item, count }) {
   const [activeSize, setActiveSize] = useState([0]);
-  const {  activeType, items} = useSelector( (state) => state.pizzas);
+  const { activeType, items } = useSelector((state) => state.pizzas);
   const dispatch = useDispatch();
 
-  const pizzaLength = items.filter(item =>
-    item.id === id
-  );
+  const pizzaLength = items.filter((item) => item.id === id);
 
   useEffect(() => {
-   setActiveSize(sizes[0]);
+    setActiveSize(sizes[0]);
   }, []);
 
   // кількість піц одноманітної піци
   let countPizzas = 0;
-  pizzaLength.map(item => countPizzas += item.count);
+  pizzaLength.map((item) => (countPizzas += item.count));
 
   //додавання піц в кошик
   const addGlobalCount = () => {
@@ -32,29 +30,42 @@ function Pizza({ id, title, price, sizes, types, imageUrl, item, count }) {
       setItem({
         id: id,
         title: title,
-        price: price,
-        sizes: +(activeSize),
+        price: sizePrice(),
+        sizes: +activeSize,
         types: [activeType],
         imageUrl: imageUrl,
-        count: count+1,
+        count: count + 1,
       })
     );
 
-    dispatch(setTotalPrice(item));
+    dispatch(setTotalPrice(sizePrice()));
     dispatch(setTotalCount(1));
   };
-
 
   const onAddCart = () => {
     addGlobalCount();
   };
 
-  const deletePositions = [item, activeSize];
-  const onDeleteItem = () => {
-    console.log(items);
-    dispatch(deleteItem(deletePositions));
-    console.log(items);
+
+  //ціна в залежності від розміру
+  const sizePrice = () => {
+    if(activeSize === 26){
+      return price;
+    }
+    if(activeSize === 30){
+      return price+20 ;
+    }
+    if(activeSize === 40){
+      return price+40 ;
+    }
   };
+
+    //обєднюємо дані для передачі в delete
+    const deletePositions = [item, activeSize, sizePrice()];
+    const onDeleteItem = () => {
+      dispatch(deleteItem(deletePositions));
+    };
+  
 
   return (
     <li className="pizza-block">
@@ -97,14 +108,16 @@ function Pizza({ id, title, price, sizes, types, imageUrl, item, count }) {
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">від {price} грн</div>
+        <div className="pizza-block__price">{sizePrice()} грн</div>
         <div className="button button--outline button--add">
           <div onClick={() => onAddCart()}>Добавити</div>
 
           <i>{countPizzas}</i>
         </div>
 
-        <div className="delete" onClick={() => onDeleteItem(item)}>Delete</div>
+        <div className="delete" onClick={() => onDeleteItem(item)}>
+          Delete
+        </div>
       </div>
     </li>
   );

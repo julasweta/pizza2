@@ -13,9 +13,11 @@ export const pizzasSlice = createSlice({
   name: "pizzas",
   initialState,
   reducers: {
+    //записуємо всі піци з бази даних
     setPizas: (state, action) => {
       state.pizzas = action.payload;
     },
+
     setActiveSize: (state, action) => {
       state.activeSize = action.payload;
     },
@@ -34,9 +36,9 @@ export const pizzasSlice = createSlice({
         state.items.push(action.payload);
       }
     },
-
+ //видаляємо окрему піцу
     deleteItem: (state, action) => {
-      state.totalPrice = state.totalPrice - action.payload[0].price;
+      state.totalPrice = state.totalPrice - action.payload[2];
       state.totalCount = state.totalCount - 1;
       const itemFind = state.items.find(
         (obj) =>
@@ -49,12 +51,15 @@ export const pizzasSlice = createSlice({
       }
     },
 
+    //видаляємо всі піци
     deleteAll: (state, action) => {
       state.items = [];
+      state.totalCount = 0;
+      state.totalPrice = 0;
     },
 
     setTotalPrice: (state, action) => {
-      state.totalPrice = state.totalPrice + action.payload.price;
+      state.totalPrice = state.totalPrice + action.payload;
     },
 
     setTotalCount: (state, action) => {
@@ -63,7 +68,7 @@ export const pizzasSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
+
 export const {
   setPizas,
   setActiveSize,

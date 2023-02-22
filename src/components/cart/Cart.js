@@ -21,6 +21,7 @@ function Cart() {
               types={item.types}
               imageUrl={item.imageUrl}
               count={item.count}
+              index={index}
             ></PizzaCart>
           ))}
       </div>
