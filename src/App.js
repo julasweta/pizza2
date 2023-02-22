@@ -4,6 +4,7 @@ import axios from "axios";
 import Header from "./components/header/Header";
 import Content from "./components/content/Content";
 import Cart from "./components/cart/Cart";
+import Pay from "./components/pay/Pay";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -22,11 +23,9 @@ function App() {
   //const [page, setPage] = useState(1);
 
   const arrSort = ["популярність", "ціна", "алфавіт"];
-  const arrCategories = ["Всі", "Мясні", "Вегетаріанські", "Гострі", "Закриті"];
-  const pages = [];
-  for (let i = 1; i < pizzas.length / 3 + 1; i++) {
-    pages.push(i);
-  }
+  const arrCategories = ["Всі", "Мясні", "Вегетаріанські", "Гострі", "Закриті", "Гриль"];
+
+
 
   useEffect(() => {
     onFilterPizzas(categories, sort);
@@ -85,7 +84,6 @@ function App() {
               <Content
                 onFilterPizzas={onFilterPizzas}
                 arrCategories={arrCategories}
-                pages={pages}
                 arrSort={arrSort}
                 isLoading={isLoading}
               />
@@ -94,6 +92,9 @@ function App() {
             {" "}
           </Route>
           <Route path="cart" element={<Cart />}>
+            {" "}
+          </Route>
+          <Route path="pay" element={<Pay />}>
             {" "}
           </Route>
         </Routes>

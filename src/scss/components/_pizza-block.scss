@@ -41,21 +41,70 @@
         font-weight: 600;
         font-size: 14px;
         @include noselect();
+        opacity: 0.5;
         &.active {
-          background: rgb(245, 218, 196);
+          background: linear-gradient(90deg, rgba(2,0,36,0.019572794938287785) 0%, rgb(176, 235, 186) 47%, rgba(255,0,0,0.5713935232296043) 100%);
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
-          border-radius: 5px;
+          border-radius: 15px;
           cursor: auto;
+          opacity: 1;
+        }
+        &.active:hover{
+
+          animation:change-color 3s linear infinite;
+          transition: all 1s ease-out;
         }
       }
     }
   }
+@keyframes change-color {
 
+    0%, 7% {
+      transform: rotateZ(0);
+    }
+    15% {
+      transform: rotateZ(-15deg);
+    }
+    20% {
+      transform: rotateZ(10deg);
+    }
+    25% {
+      transform: rotateZ(-10deg);
+    }
+    30% {
+      transform: rotateZ(6deg);
+    }
+    35% {
+      transform: rotateZ(-4deg);
+    }
+    40%, 100% {
+      transform: rotateZ(0);
+    }
+}
   &__bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 20px;
+    .delete{
+      cursor: pointer;
+      width: 20%;
+      height: 64px;
+      display: flex;
+     align-items: center;
+     justify-content: center;
+    }
+    .delete:hover{
+      cursor: pointer;
+      background: red;
+      border-radius: 12px;
+      animation:change-color 3s linear infinite;
+    
+    }
+    .delete::before {
+      content: url(../../../public/sound/bell-sound.mp3);
+      display: none;
+    }
   }
 
   &__price {

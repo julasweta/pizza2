@@ -7,7 +7,9 @@
 body {
   background-color: $background;
 }
-
+a{
+  text-decoration: none;
+}
 .wrapper {
   width: calc(100vw - 100px);
   height: 100%;

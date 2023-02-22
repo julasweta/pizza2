@@ -1,0 +1,36 @@
+@import "../variables.scss";
+
+.pay {
+  margin: 100px 120px 0 120px;
+  .notation{
+    color: rgb(22, 1, 254);
+    span{
+        color: rgb(239, 5, 5);
+        font-weight: 900;
+        font-size: 22px;
+    }
+  }
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  span{
+    color: red;
+  }
+  label {
+    margin: 20px 0 10px 0;
+    color: rgb(185, 185, 224);
+  }
+  input {
+    border: 2px solid gray;
+    border-radius: 10px;
+    height: 50px;
+  }
+  .submit {
+    height: 80px;
+    width: 150px;
+    background-color: aqua;
+    border-radius: 20px;
+  }
+}

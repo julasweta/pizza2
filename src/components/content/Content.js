@@ -2,20 +2,22 @@ import Categories from "./Categories";
 import Sort from "./Sort";
 import Pizza from "./Pizza";
 import Pagination from "./Pagination";
-import Skeleton from "./Skeleton";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Content({ arrCategories, arrSort, pages, isLoading }) {
+function Content({ arrCategories, arrSort,   isLoading }) {
+
   const { searchValue, sort, categories } = useSelector(
     (state) => state.filter
   );
+
   const { page } = useSelector((state) => state.pagination);
   const { pizzas, items } = useSelector((state) => state.pizzas);
-  
+
   const navigate = useNavigate();
 
+  //переводимо назви категорій в латинь
   const catogoriesLatino = () => {
     if (categories === "Всі") {
       return "vsi";
@@ -32,12 +34,36 @@ function Content({ arrCategories, arrSort, pages, isLoading }) {
     if (categories === "Закриті") {
       return "close";
     }
+    if (categories === "Гриль") {
+      return "gril";
+    }
   };
 
   /*записуємо категорію, сортування і номер сторінки в пошукову графу браузера */
   useEffect(() => {
     navigate(`?${page}=${catogoriesLatino()}=${sort}`);
   }, [page, sort, categories]);
+
+   /*  рахуємо скільки в нас сторінок  */
+   const countPizzas = pizzas
+   .filter((item) =>
+     item.name.toLowerCase().includes(searchValue.toLowerCase())
+   )
+   .filter((item) =>
+     categories === "Закриті" ||
+     categories === "Мясні" ||
+     categories === "Гострі" ||
+     categories === "Вегетаріанські" ||
+     categories === "Гриль"
+       ? item.category === categories
+       : item.category !== categories
+   )
+   const pages = [];
+   for (let i = 1; i < countPizzas.length / 3 + 1; i++) {
+     pages.push(i);
+   }
+
+ 
 
   return (
     <div className="content">
@@ -53,15 +79,16 @@ function Content({ arrCategories, arrSort, pages, isLoading }) {
             .filter((item) =>
               item.name.toLowerCase().includes(searchValue.toLowerCase())
             )
-            //.filter((item, index) => index < page * 3 && index > page * 3 - 4)
             .filter((item) =>
               categories === "Закриті" ||
               categories === "Мясні" ||
               categories === "Гострі" ||
-              categories === "Вегетаріанські"
+              categories === "Вегетаріанські" ||
+              categories === "Гриль"
                 ? item.category === categories
                 : item.category !== categories
             )
+            .filter((item, index) => index < page * 3 && index > page * 3 - 4)
             .map((item) => (
               <Pizza
                 key={item.id}

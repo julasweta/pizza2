@@ -7,18 +7,26 @@ import {
   setTotalCount,
 } from "../../redux/slices/pizzasSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 
 function Pizza({ id, title, price, sizes, types, imageUrl, item, count }) {
-  const { activeSize, activeType, items} = useSelector( (state) => state.pizzas);
+  const [activeSize, setActiveSize] = useState([0]);
+  const {  activeType, items} = useSelector( (state) => state.pizzas);
   const dispatch = useDispatch();
 
   const pizzaLength = items.filter(item =>
     item.id === id
   );
 
-  let sum = 0;
-  pizzaLength.map(item => sum += item.count);
+  useEffect(() => {
+   setActiveSize(sizes[0]);
+  }, []);
 
+  // кількість піц одноманітної піци
+  let countPizzas = 0;
+  pizzaLength.map(item => countPizzas += item.count);
+
+  //додавання піц в кошик
   const addGlobalCount = () => {
     dispatch(
       setItem({
@@ -41,8 +49,11 @@ function Pizza({ id, title, price, sizes, types, imageUrl, item, count }) {
     addGlobalCount();
   };
 
+  const deletePositions = [item, activeSize];
   const onDeleteItem = () => {
-    dispatch(deleteItem(item));
+    console.log(items);
+    dispatch(deleteItem(deletePositions));
+    console.log(items);
   };
 
   return (
@@ -77,7 +88,7 @@ function Pizza({ id, title, price, sizes, types, imageUrl, item, count }) {
           {sizes.map((item, index) => (
             <li
               className={activeSize === item ? "active" : ""}
-              onClick={() => dispatch(setActiveSize(item))}
+              onClick={() => setActiveSize(item)}
               key={index}
             >
               {item}
@@ -90,10 +101,10 @@ function Pizza({ id, title, price, sizes, types, imageUrl, item, count }) {
         <div className="button button--outline button--add">
           <div onClick={() => onAddCart()}>Добавити</div>
 
-          <i>{sum}</i>
+          <i>{countPizzas}</i>
         </div>
 
-        <div onClick={() => onDeleteItem(item)}>Delete</div>
+        <div className="delete" onClick={() => onDeleteItem(item)}>Delete</div>
       </div>
     </li>
   );

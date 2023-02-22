@@ -1,12 +1,11 @@
 import React from 'react';
 import Search from './Search';
 import { Link } from "react-router-dom";
-import { setTotalPrice } from "../../redux/slices/pizzasSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 function Header() {
-  const { items, totalPrice, totalCount } = useSelector((state) => state.pizzas);
+  const { totalPrice, totalCount } = useSelector((state) => state.pizzas);
 
 
 

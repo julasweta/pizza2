@@ -1,6 +1,4 @@
 import {
-  setActiveType,
-  setActiveSize,
   setItem,
   deleteItem,
   setTotalPrice,
@@ -9,10 +7,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 
 function PizzaCart({ id, title, price, sizes, types, imageUrl, item, count }) {
-
-  const { activeSize, activeType} = useSelector(
-    (state) => state.pizzas
-  );
+  const { activeSize, activeType } = useSelector((state) => state.pizzas);
   const dispatch = useDispatch();
 
   const addGlobalCount = () => {
@@ -28,7 +23,6 @@ function PizzaCart({ id, title, price, sizes, types, imageUrl, item, count }) {
       })
     );
 
-    console.log((id))
     dispatch(setTotalPrice(item));
     dispatch(setTotalCount(1));
   };
@@ -36,13 +30,11 @@ function PizzaCart({ id, title, price, sizes, types, imageUrl, item, count }) {
   const onAddCart = () => {
     addGlobalCount();
   };
+  const deletePositions = [item, item.sizes];
 
   const onDeleteItem = () => {
-    dispatch(deleteItem(item));
+    dispatch(deleteItem(deletePositions));
   };
-
-
-
 
   return (
     <li className="pizza-block">
@@ -63,10 +55,7 @@ function PizzaCart({ id, title, price, sizes, types, imageUrl, item, count }) {
           </li>
         </ul>
         <ul>
-            <li
-            >
-              {sizes}
-            </li>
+          <li>{sizes}</li>
         </ul>
       </div>
       <div className="pizza-block__bottom">
@@ -77,7 +66,7 @@ function PizzaCart({ id, title, price, sizes, types, imageUrl, item, count }) {
           <i>{count}</i>
         </div>
 
-        <div onClick={() => onDeleteItem(item)}>Delete</div>
+        <div className="delete" onClick={() => onDeleteItem(item)}>Delete</div>
       </div>
     </li>
   );

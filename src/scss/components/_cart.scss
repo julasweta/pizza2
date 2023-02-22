@@ -1,0 +1,27 @@
+@import '../variables.scss';
+.cart{
+    margin: 120px 120px 0 120px;
+
+}
+.pay-wraper{
+    display: flex;
+    justify-content: end;
+}
+.btn-pay{
+    background-color: rgb(249, 235, 224);
+    height: 50px;
+    width: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid red ;
+    border-radius:30%;
+
+  
+}
+.btn-pay:hover{
+    border: 2px solid rgb(13, 241, 215) ; 
+    cursor: pointer;
+
+}
+
