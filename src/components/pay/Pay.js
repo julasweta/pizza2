@@ -44,7 +44,7 @@ function Pay() {
   });
 
 
-  const { items, totalCount, totalPrice } = useSelector(
+  const { items, totalCount, totalPrice, lang } = useSelector(
     (state) => state.pizzas
   );
 
@@ -63,11 +63,11 @@ function Pay() {
   return (
     <div className="pay">
       <div className="notation">
-        Ви вибрали до оплати
+       {lang? ' Ви вибрали до оплати' : 'You have selected to pay'}
         <span> {totalCount} </span>
-        позиції на суму <span> {totalPrice} </span>
+        {lang? 'позиції на суму' : 'positions for the amount'} <span> {totalPrice} </span>
         грн.
-        <div>Для завершення замовлення заповніть ваші дані</div>
+        <div>{lang? 'Для завершення замовлення заповніть ваші дані' : 'Fill in your details to complete the order'}</div>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>

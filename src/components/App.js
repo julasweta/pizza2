@@ -1,21 +1,21 @@
 
-import "./scss/app.scss";
+import "../scss/app.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import Header from "./components/header/Header";
-import Content from "./components/content/Content";
-import Cart from "./components/cart/Cart";
-import Pay from "./components/pay/Pay";
+import Header from "./header/Header";
+import Content from "./content/Content";
+import Cart from "./cart/Cart";
+import Pay from "./pay/Pay";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setPizas } from "./redux/slices/pizzasSlice";
+import { setPizas } from "../redux/slices/pizzasSlice";
 
 function App() {
-  const { sort, categories, searchValue } = useSelector(
+  const { sort, categories} = useSelector(
     (state) => state.filter
   );
-  const { page } = useSelector((state) => state.pagination);
+  //const { page } = useSelector((state) => state.pagination);
   const { lang } = useSelector((state) => state.pizzas);
 
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     onFilterPizzas(categories, sort);
-  }, [categories, sort, page, searchValue, lang]);
+  }, [categories, sort, lang]);
   
 
   /* витягуємо всі піци  */
