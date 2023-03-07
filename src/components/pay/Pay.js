@@ -71,21 +71,20 @@ function Pay() {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label>Ваше Ім'я*</label>
-        <input {...register("firstName")} />
+      <label>{lang? 'Імяе': 'First Name'}</label>
+      <input {...register("firstName")} />
         {errors.firstName && <span>{errors.firstName.message}</span>}
 
-        <label>Ваше Прізвище</label>
+        <label>{lang? 'Прізвище': 'Last Name'}</label>
         <input {...register("lastName")} />
         {errors.lastName && <span>{errors.lastName.message}</span>}
 
-        <label>Ваш email</label>
+        <label>{lang? 'Ваш email': '@email'}</label>
         <input {...register("email")} />
         {errors.email && <span>{errors.email.message}</span>}
 
         <label>
-          Введіть пароль для реєстрації вашого акаунта і перегляду статуса
-          замовлення{" "}
+         {lang? 'Введіть пароль для реєстрації': 'Enter password for registration'}{" "}
         </label>
         <input {...register("password")} />
         {errors.password && <span>{errors.password.message}</span>}
@@ -97,7 +96,7 @@ function Pay() {
           <option value="23">23</option>
         </select>
         <button type="submit" className="submit" onClick={() => clear()}>
-          Відправити
+         {lang? ' Відправити' : 'Send'}
         </button>
       </form>
 
