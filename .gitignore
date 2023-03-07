@@ -23,3 +23,15 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+'no-restricted-imports': [
+  'error', 
+  {
+    patterns: [
+      '**/../*', 
+      '!**/../components', 
+      '**/../components/*', 
+      
+    ]
+  }, 

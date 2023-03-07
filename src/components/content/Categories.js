@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategories } from "../../redux/slices/filterSlice";
 import { setSearchValue } from "../../redux/slices/filterSlice";
@@ -5,12 +6,15 @@ import { setPage } from "../../redux/slices/paginationSlice";
 
 function Categories({ arrCategories }) {
   const {categories, sort} = useSelector((state) => state.filter);
+  const [categoriesEn, setCategoriesEn] = useState("Vsi")
 
   const dispatch = useDispatch();
 
-console.log(categories);
+
 
   const onActive = (item) => {
+    
+    setCategoriesEn(item);
     const returnUa = () =>{
       if(item === "Vsi")
       {return "Всі"}
@@ -33,12 +37,13 @@ console.log(categories);
     dispatch(setPage( 1));
   };
 
+ 
   return (
     <div className="categories">
       <ul>
         {arrCategories.map((item, index) => (
           <li
-            className={categories === item ? "active" : ""}
+            className={categories === item || categoriesEn === item ? "active" : ""}
             onClick={() => onActive(item)}
             key={index}
           >
