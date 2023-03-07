@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Search from './Search';
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,7 +17,7 @@ const onLang = () => {
   return (
     <div className="header">
       <div className="container">
-        <Link to="/" className="header__logo">
+        <Link to="*" className="header__logo">
           <img width="38" src={process.env.PUBLIC_URL + '/img/pizza-logo.svg'} alt="Pizza logo" />
           <div>
             <h1>React Pizza</h1>

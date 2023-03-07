@@ -86,7 +86,7 @@ function App() {
         <Header></Header>
         <Routes>
           <Route
-            path="/"
+            path="*"
             element={
               <Content
                 onFilterPizzas={onFilterPizzas}
