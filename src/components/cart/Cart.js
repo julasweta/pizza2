@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 function Cart() {
   const { items } = useSelector((state) => state.pizzas);
 
+  console.log(items);
+
   return (
     <div className="cart">
       <div className="content__items">

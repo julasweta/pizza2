@@ -13,7 +13,7 @@ function Header() {
     <div className="header">
       <div className="container">
         <Link to="/" className="header__logo">
-          <img width="38" src="img/pizza-logo.svg" alt="Pizza logo" />
+          <img width="38" src={process.env.PUBLIC_URL + '/img/pizza-logo.svg'} alt="Pizza logo" />
           <div>
             <h1>React Pizza</h1>
             <p>Найсмачніша піца</p>

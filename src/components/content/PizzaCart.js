@@ -48,7 +48,7 @@ function PizzaCart({
       })
     );
 
-    dispatch(setTotalPrice(item));
+    dispatch(setTotalPrice(item.price));
     dispatch(setTotalCount(1));
   };
 
