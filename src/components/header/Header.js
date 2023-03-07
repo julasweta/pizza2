@@ -31,7 +31,7 @@ const onLang = () => {
 
         <div className="header__cart">
           <Link to="/cart" href="/cart.html" className="button button--cart">
-            <span>{totalPrice} грн</span>
+            <span>{totalPrice} {lang? 'грн' : "UAH"}</span>
             <div className="button__delimiter"></div>
             <svg
               width="18"
