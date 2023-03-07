@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { setSearchValue,setCategories} from "../../redux/slices/filterSlice";
 
 function Search() {
-  const searchValue = useSelector((state) => state.filter.searchValue);
+  const {searchValue} = useSelector((state) => state.filter);
+  const {lang} = useSelector((state) => state.pizzas);
   const dispatch = useDispatch();
 
   const onClickClearFocus = () => {
@@ -28,7 +29,7 @@ function Search() {
         type="btn__search"
         id="site-search"
         name="search"
-        placeholder="пошук піци..."
+        placeholder={lang? 'пошук піци...' : 'search pizza'}
         onChange={(e) => onSearsh(e)}
         value={searchValue}
         ref={inputRef}

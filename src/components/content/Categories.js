@@ -6,14 +6,30 @@ import { setPage } from "../../redux/slices/paginationSlice";
 function Categories({ arrCategories }) {
   const {categories, sort} = useSelector((state) => state.filter);
 
-  const { page } = useSelector((state) => state.pagination);
   const dispatch = useDispatch();
 
-
+console.log(categories);
 
   const onActive = (item) => {
+    const returnUa = () =>{
+      if(item === "Vsi")
+      {return "Всі"}
+      if(item === "Close")
+      {return "Закриті"}
+      if(item === "Gril")
+      {return "Гриль"}
+      if(item === "Vega")
+      {return "Вегетаріанські"}
+      if(item === "Hot")
+      {return "Гострі"}
+      if(item === "Meat")
+      {return "Мясні"}
+      else{
+        return item
+      }
+    }
     dispatch(setSearchValue(""));
-    dispatch(setCategories(item));
+    dispatch(setCategories(returnUa()));
     dispatch(setPage( 1));
   };
 

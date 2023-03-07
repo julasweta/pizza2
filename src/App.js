@@ -1,3 +1,4 @@
+
 import "./scss/app.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
@@ -15,29 +16,33 @@ function App() {
     (state) => state.filter
   );
   const { page } = useSelector((state) => state.pagination);
-  const { pizzas } = useSelector((state) => state.pizzas);
+  const { lang } = useSelector((state) => state.pizzas);
 
   const dispatch = useDispatch();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
   //const [page, setPage] = useState(1);
 
   const arrSort = ["популярність", "ціна", "алфавіт"];
   const arrCategories = ["Всі", "Мясні", "Вегетаріанські", "Гострі", "Закриті", "Гриль"];
-
+  const arrCategoriesEng = ["Vsi", "Meat", "Vega", "Hot", "Close", "Gril"];
 
 
   useEffect(() => {
     onFilterPizzas(categories, sort);
-  }, [categories, sort, page, searchValue]);
+  }, [categories, sort, page, searchValue, lang]);
+  
 
   /* витягуємо всі піци  */
   const onFilterPizzas = () => {
 
     axios
-      .get(`https://my-json-server.typicode.com/julasweta/repo/pizzas`)
+  
+      .get( lang? `https://my-json-server.typicode.com/julasweta/repo/pizzas` : `https://api.jsonbin.io/v3/b/640776d5c0e7653a0583f972`)
       .then((arr) => {
-        arr.data.sort(function (a, b) {
+        
+       const arrLang = lang? arr.data : arr.data.record;
+       arrLang.sort(function (a, b) {
           if (sort === "price") {
             if (a.price > b.price) {
               return 1;
@@ -69,10 +74,12 @@ function App() {
           }
         });
 
-        dispatch(setPizas(arr.data));
+      
+        dispatch(setPizas(arrLang));
       });
   };
 
+ 
   return (
     <div>
       <BrowserRouter>
@@ -83,7 +90,7 @@ function App() {
             element={
               <Content
                 onFilterPizzas={onFilterPizzas}
-                arrCategories={arrCategories}
+                arrCategories={lang? arrCategories : arrCategoriesEng}
                 arrSort={arrSort}
                 isLoading={isLoading}
               />

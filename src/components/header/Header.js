@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Search from './Search';
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {setLang} from "../../redux/slices/pizzasSlice";
 
 
 function Header() {
-  const { totalPrice, totalCount } = useSelector((state) => state.pizzas);
+  const { totalPrice, totalCount, lang } = useSelector((state) => state.pizzas);
+const dispatch = useDispatch();
 
+const onLang = () => {
+  dispatch(setLang());
+}
 
 
   return (
@@ -21,6 +26,9 @@ function Header() {
         </Link>
         <Search
         ></Search>
+
+        <button onClick={()=>onLang()} className="btn-12"><span>{lang? 'EN':'UA'}</span><span>{lang? 'UA': 'EN'}</span></button>
+
         <div className="header__cart">
           <Link to="/cart" href="/cart.html" className="button button--cart">
             <span>{totalPrice} грн</span>

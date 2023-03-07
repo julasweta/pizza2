@@ -7,12 +7,18 @@ const initialState = {
   items: [],
   totalPrice: 0,
   totalCount: 0,
+  lang: true,
 };
 
 export const pizzasSlice = createSlice({
   name: "pizzas",
   initialState,
   reducers: {
+    //міняємо мову
+    setLang: (state) => {
+      state.lang = !state.lang;
+    },
+
     //записуємо всі піци з бази даних
     setPizas: (state, action) => {
       state.pizzas = action.payload;
@@ -36,7 +42,7 @@ export const pizzasSlice = createSlice({
         state.items.push(action.payload);
       }
     },
- //видаляємо окрему піцу
+    //видаляємо окрему піцу
     deleteItem: (state, action) => {
       state.totalPrice = state.totalPrice - action.payload[2];
       state.totalCount = state.totalCount - 1;
@@ -44,10 +50,13 @@ export const pizzasSlice = createSlice({
         (obj) =>
           obj.id === action.payload[0].id && obj.sizes === action.payload[1]
       );
-      if (itemFind.count>1) {
+      if (itemFind.count > 1) {
         itemFind.count--;
-      }else{
-        state.items = state.items.filter(obj => obj.sizes != action.payload[1]  || obj.id != action.payload[0].id  )
+      } else {
+        state.items = state.items.filter(
+          (obj) =>
+            obj.sizes != action.payload[1] || obj.id != action.payload[0].id
+        );
       }
     },
 
@@ -68,7 +77,6 @@ export const pizzasSlice = createSlice({
   },
 });
 
-
 export const {
   setPizas,
   setActiveSize,
@@ -78,6 +86,7 @@ export const {
   deleteAll,
   setTotalPrice,
   setTotalCount,
+  setLang
 } = pizzasSlice.actions;
 
 export default pizzasSlice.reducer;

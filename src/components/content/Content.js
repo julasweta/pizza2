@@ -6,43 +6,63 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Content({ arrCategories, arrSort,   isLoading }) {
+function Content({ arrCategories, arrSort }) {
 
   const { searchValue, sort, categories } = useSelector(
     (state) => state.filter
   );
 
   const { page } = useSelector((state) => state.pagination);
-  const { pizzas, items } = useSelector((state) => state.pizzas);
-
+  const { pizzas, lang } = useSelector((state) => state.pizzas);
+//console.log(pizzas);
   const navigate = useNavigate();
 
   //переводимо назви категорій в латинь
   const catogoriesLatino = () => {
+   
     if (categories === "Всі") {
-      return "vsi";
+      return "Vsi";
     }
     if (categories === "Мясні") {
-      return "meat";
+      return "Meat";
     }
     if (categories === "Вегетаріанські") {
-      return "vega";
+      return "Vega";
     }
     if (categories === "Гострі") {
-      return "hot";
+      return "Hot";
     }
     if (categories === "Закриті") {
-      return "close";
+      return "Close";
     }
     if (categories === "Гриль") {
-      return "gril";
+      return "Gril";
+    }
+    if (categories === "Vsi") {
+      return "Vsi";
+    }
+    if (categories === "Meat") {
+      return "Meat";
+    }
+    if (categories === "Vega") {
+      return "Vega";
+    }
+    if (categories === "Hot") {
+      return "Hot";
+    }
+    if (categories === "Close") {
+      return "Close";
+    }
+    if (categories === "Gril") {
+      return "Gril";
     }
   };
+
 
   /*записуємо категорію, сортування і номер сторінки в пошукову графу браузера */
   useEffect(() => {
     navigate(`?${page}=${catogoriesLatino()}=${sort}`);
-  }, [page, sort, categories]);
+  }, [page, sort, categories, lang]);
 
    /*  рахуємо скільки в нас сторінок  */
    const countPizzas = pizzas
@@ -50,11 +70,11 @@ function Content({ arrCategories, arrSort,   isLoading }) {
      item.name.toLowerCase().includes(searchValue.toLowerCase())
    )
    .filter((item) =>
-     categories === "Закриті" ||
-     categories === "Мясні" ||
-     categories === "Гострі" ||
-     categories === "Вегетаріанські" ||
-     categories === "Гриль"
+     categories === "Закриті" || 
+     categories === "Мясні" || 
+     categories === "Гострі" || 
+     categories === "Вегетаріанські" || 
+     categories === "Гриль" 
        ? item.category === categories
        : item.category !== categories
    )
@@ -73,7 +93,7 @@ function Content({ arrCategories, arrSort,   isLoading }) {
           <Sort arrSort={arrSort}></Sort>
         </div>
 
-        <h2 className="content__title">Всі піци</h2>
+        <h2 className="content__title">{lang? 'Всі піци' :'All Pizzas'}</h2>
         <div className="content__items">
           {pizzas
             .filter((item) =>
@@ -84,7 +104,7 @@ function Content({ arrCategories, arrSort,   isLoading }) {
               categories === "Мясні" ||
               categories === "Гострі" ||
               categories === "Вегетаріанські" ||
-              categories === "Гриль"
+              categories === "Гриль"  
                 ? item.category === categories
                 : item.category !== categories
             )

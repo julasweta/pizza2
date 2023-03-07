@@ -18,7 +18,7 @@ function PizzaCart({
   index,
   count,
 }) {
-  const { activeSize, activeType } = useSelector((state) => state.pizzas);
+  const { lang, activeType } = useSelector((state) => state.pizzas);
   const dispatch = useDispatch();
   const [activeColor, setActiveColor] = useState(false);
 
@@ -85,9 +85,9 @@ function PizzaCart({
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">{price} грн</div>
+        <div className="pizza-block__price">{price} {lang? 'грн' : 'UAH'}</div>
         <div className="button button--outline button--add">
-          <div onClick={() => onAddCart()}>Добавити</div>
+          <div onClick={() => onAddCart()}>{lang? 'Добавити' : 'Add Pizza'} </div>
 
           <i>{count}</i>
         </div>

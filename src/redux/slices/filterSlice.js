@@ -19,29 +19,28 @@ const initialState = {
       let stringToArray = browserText
         .substring(1, browserText.length)
         .split("=");
-
-      if (stringToArray[1] === "vsi") {
-        return "Всі";
+      if (stringToArray[1] === "Vsi") {
+        return "Всі" ;
       }
-      if (stringToArray[1] === "meat") {
-        return "Мясні";
+      if (stringToArray[1] === "Meat") {
+        return "Мясні" ;
       }
-      if (stringToArray[1] === "vega") {
-        return "Вегетаріанські";
+      if (stringToArray[1] === "Vega") {
+        return "Вегетаріанські" ;
       }
-      if (stringToArray[1] === "hot") {
-        return "Гострі";
+      if (stringToArray[1] === "Hot") {
+        return "Гострі" ;
       }
-      if (stringToArray[1] === "close") {
-        return "Закриті";
+      if (stringToArray[1] === "Close") {
+        return "Закриті" ;
       }
-      if (stringToArray[1] === "gril") {
-        return "Гриль";
+      if (stringToArray[1] === "Gril") {
+        return "Гриль" ;
       } else {
         return "";
       }
     } else {
-      return "Всі";
+      return "Всі" ;
     }
   })(),
 

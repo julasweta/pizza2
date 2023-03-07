@@ -6,6 +6,7 @@ function Sort({ arrSort }) {
   const [open, setOpen] = useState(false);
 
   const {sort, categories} = useSelector((state) => state.filter);
+  const {lang} = useSelector((state) => state.pizzas);
   const dispatch = useDispatch();
 
 
@@ -39,7 +40,7 @@ function Sort({ arrSort }) {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
+        <b>{lang? 'Сортування по:' : 'Sort'}</b>
         <span onClick={() => onOpen()}>{sort}</span>
       </div>
 

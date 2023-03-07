@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 function Pizza({ id, title, price, sizes, types, imageUrl, item, count }) {
   const [activeSize, setActiveSize] = useState([0]);
-  const { activeType, items } = useSelector((state) => state.pizzas);
+  const { activeType, items, lang } = useSelector((state) => state.pizzas);
   const dispatch = useDispatch();
 
   const pizzaLength = items.filter((item) => item.id === id);
@@ -108,9 +108,9 @@ function Pizza({ id, title, price, sizes, types, imageUrl, item, count }) {
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">{sizePrice()} грн</div>
+        <div className="pizza-block__price">{sizePrice()} {lang? 'грн' : 'UAH'}</div>
         <div className="button button--outline button--add">
-          <div onClick={() => onAddCart()}>Добавити</div>
+          <div onClick={() => onAddCart()}>{lang? 'Добавити' : 'Add Pizza'} </div>
 
           <i>{countPizzas}</i>
         </div>
